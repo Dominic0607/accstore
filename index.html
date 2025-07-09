@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACC STORE - លក្ខខណ្ឌធានាផលិតផល</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.min.js"></script>
+    <script src="https://tonejs.github.io/build/Tone.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kantumruy+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: ACC STORE Theme (Black, White, Lime Green) -->
+    <!-- Application Structure Plan: Updated tab buttons to display full text on all screen sizes for a consistent experience across devices, as requested. -->
+    <!-- Visualization & Content Choices: 
+        - UI Enhancement: Removed responsive hiding classes (`hidden sm:inline`) from button text to ensure labels are always visible. The flex-wrap property will handle layout on smaller screens.
+        - Icons: Kept Unicode icons for category buttons for visual distinction.
+        - Tagline: The styled English slogan remains for brand identity.
+        - Library/Method: Vanilla JavaScript for interactivity, Tailwind CSS for styling, CSS keyframes for animations, and Tone.js for sound effects.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Kantumruy Pro', sans-serif;
+            background-color: #000000;
+            background-image: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+        .tab-btn {
+            background-color: #374151; /* bg-gray-700 */
+            color: #f3f4f6; /* text-gray-100 */
+            transition: all 0.3s ease-in-out;
+        }
+        .tab-btn:hover:not(.active) {
+            transform: translateY(-3px);
+            background-color: #4b5563; /* bg-gray-600 */
+            box-shadow: 0 4px 15px rgba(163, 230, 53, 0.1);
+        }
+        .tab-btn.active {
+            background-image: linear-gradient(to right, #a3e635, #84cc16);
+            color: #111827; /* text-gray-900 */
+            font-weight: 700;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(163, 230, 53, 0.2);
+        }
+        .content-card {
+             background-color: rgba(31, 41, 55, 0.7); /* bg-gray-800 with opacity */
+             backdrop-filter: blur(10px);
+             border: 1px solid #4b5563; /* border-gray-600 */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="text-slate-200">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <header class="text-center mb-8">
+             <img src="ACC LOGO.png" alt="ACC STORE Logo" class="mx-auto h-40 w-auto mb-4">
+            <h1 class="text-3xl md:text-4xl font-bold text-white">លក្ខខណ្ឌធានាផលិតផល</h1>
+            <p class="text-slate-400 mt-2 tracking-widest uppercase text-sm font-light">WARRANTY POLICY & Terms</p>
+        </header>
+
+        <div id="product-tabs" class="flex flex-wrap justify-center gap-3 mb-8">
+            <button data-target="power-bank" class="tab-btn active px-4 py-2 rounded-lg flex items-center gap-2">🔋<span>Power Bank</span></button>
+            <button data-target="charger" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">🔌<span>ដុំសាក</span></button>
+            <button data-target="cable" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">➿<span>ខ្សែសាក</span></button>
+            <button data-target="audio" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">🎧<span>កាស</span></button>
+            <button data-target="watch" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">⌚<span>នាឡិកា</span></button>
+            <button data-target="socket" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">💡<span>ព្រីភ្លើង</span></button>
+            <button data-target="screen" class="tab-btn px-4 py-2 rounded-lg flex items-center gap-2">📱<span>ស្គ្រីនការពារ</span></button>
+        </div>
+
+        <main id="content-area">
+            
+            <div id="power-bank" class="product-content fade-in">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">Power Bank</h2>
+                    <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-4">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Anker:</strong> ១២ ខែ</li>
+                        <li><strong>Joyroom:</strong> ៦ ខែ</li>
+                        <li><strong>Wekome:</strong> ៦ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                     <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- សាកចេញទៅកាន់ទូរស័ព្ទមិនដំណើរការ</li>
+                                <li>- ថ្មរបស់ Power Bank មិនកាន់ (បញ្ចូលបានក្រោម ៥នាទី​ឈប់ដំណើរការ)</li>
+                                <li>- សាកថ្មចូល Power Bank មិនដំណើរការ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- Digital Display មិនដំណើរការ (ប៉ុន្តែការសាកចេញ-ចូលធម្មតា)</li>
+                                <li>- រន្ធមួយចំនួនមិនដំណើរការ ប៉ុន្តែមានរន្ធមួយផ្សេងទៀតនៅដំណើរការធម្មតា</li>
+                                <li>- ធ្លាក់បាក់បែក, ចូលទឹក, ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="charger" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">ដុំសាក (Charger)</h2>
+                    <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-4">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Anker:</strong> ១២ ខែ</li>
+                        <li><strong>Joyroom:</strong> ៦ ខែ</li>
+                        <li><strong>Wekome:</strong> ៦ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                    <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- សាកចេញទៅកាន់ទូរស័ព្ទមិនដំណើរការទាំងស្រុង</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- Digital Display មិនដំណើរការ (ប៉ុន្តែការសាកចេញធម្មតា)</li>
+                                <li>- រន្ធមួយចំនួនមិនដំណើរការ ប៉ុន្តែមានរន្ធមួយផ្សេងទៀតនៅដំណើរការធម្មតា</li>
+                                <li>- ធ្លាក់បាក់បែក, ចូលទឹក, ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="cable" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">ខ្សែសាក (Charger Cable)</h2>
+                     <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-6">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Anker:</strong> ១២ ខែ</li>
+                        <li><strong>Joyroom:</strong> ៦ ខែ</li>
+                        <li><strong>Wekome:</strong> ៦ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                    <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- សាកទៅកាន់ទូរស័ព្ទ ឬផ្ទេរទិន្នន័យមិនដំណើរការ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- Digital Display មិនដំណើរការ (ប៉ុន្តែការសាកធម្មតា)</li>
+                                <li>- ឌុយមួយមិនដំណើរការ (សម្រាប់ខ្សែមានច្រើនក្បាល) ប៉ុន្តែមានឌុយផ្សេងនៅដំណើរការ</li>
+                                <li>- ដាច់រលាត់, រហែក, បាក់ក្បាលឌុយ, ឬខូចដោយការប្រើប្រាស់</li>
+                                <li>- ធ្លាក់ចូលទឹក ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="audio" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">គ្រឿងបន្លាស់អូឌីយ៉ូ (កាស)</h2>
+                     <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-6">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Anker / Soundcore:</strong> ១២ ខែ</li>
+                        <li><strong>Picun:</strong> ៦ ខែ</li>
+                        <li><strong>Joyroom:</strong> ៦ ខែ</li>
+                        <li><strong>Wekome:</strong> ៦ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                    <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- មិនឮសម្លេងទាំងស្រុង ឬឮតែម្ខាង</li>
+                                <li>- មិនអាចភ្ជាប់ Bluetooth ឬ Jack ទៅឧបករណ៍បាន</li>
+                                <li>- ប្រអប់សាកមិនដំណើរការ (សម្រាប់កាស TWS)</li>
+                                <li>- មីក្រូហ្វូនមិនដំណើរការ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- សម្លេងលឺតិចៗដោយសារកាកសំណល់ ឬធូលី</li>
+                                <li>- បាត់បង់គ្រឿងបន្លាស់ណាមួយ (ប្រដាប់ត្រចៀក, កាសម្ខាង)</li>
+                                <li>- ការខូចខាតរូបរាងខាងក្រៅ, ស្នាមឆ្កូត</li>
+                                <li>- ធ្លាក់បាក់បែក, ចូលទឹក, ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="watch" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">នាឡិកា (Watch)</h2>
+                    <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-6">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Joyroom:</strong> ៦ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                    <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- នាឡិកាមិនដំណើរការ (បើកមិនចេញ)</li>
+                                <li>- អេក្រង់ថាច់ស្គ្រីន (Touchscreen) មិនដំណើរការ</li>
+                                <li>- មុខងារស្នូល (Core features) ដូចជាការវាស់ចង្វាក់បេះដូងមិនដំណើរការ</li>
+                                <li>- សាកថ្មមិនចូល</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- ការខូចខាតអេក្រង់ (ប្រេះ, បែក, ស្នាមឆ្កូតជ្រៅ)</li>
+                                <li>- ការខូចខាតរូបរាងខាងក្រៅ (ស្នាមឆ្កូត, ខូចខ្សែ)</li>
+                                <li>- ការខូចខាតដោយសារទឹករលើសពីកម្រិត IP rating</li>
+                                <li>- ការថយចុះសមត្ថភាពថ្មតាមការប្រើប្រាស់ធម្មតា</li>
+                                <li>- ធ្លាក់បាក់បែក ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="socket" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">ព្រីភ្លើង (Power Socket)</h2>
+                    <div class="bg-sky-900/70 border-l-4 border-sky-400 text-sky-200 p-4 rounded-md mb-6">
+                      <p class="font-bold flex items-center"><span class="mr-2">🛡️</span> រយៈពេលធានាពី ក្រុមហ៊ុន</p>
+                      <ul class="list-disc list-inside mt-2 space-y-1">
+                        <li><strong>Anker:</strong> ១២ ខែ</li>
+                      </ul>
+                      <p class="text-xs mt-2 text-slate-400">*សូមពិនិត្យមើលការធានាជាក់លាក់នៅលើប្រអប់ផលិតផល។</p>
+                    </div>
+                    <div class="bg-lime-900/50 border-l-4 border-lime-500 text-lime-200 p-4 rounded-md mb-6">
+                      <p class="font-bold">សូមចំណាំ</p>
+                      <p>ប្រសិនបើមានបញ្ហាក្នុងរយៈពេល <strong>៧ថ្ងៃដំបូង</strong> នឹងត្រូវបានប្ដូរជូនផលិតផលថ្មីភ្លាមៗ (ប្រសិនបើបញ្ហានោះស្ថិតក្នុងលក្ខខណ្ឌធានា)។</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- រន្ធដោតទាំងអស់ ឬ រន្ធ USB ទាំងអស់មិនដំណើរការ</li>
+                                <li>- កុងតាក់បិទបើកមិនដំណើរការ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- រន្ធណាមួយមិនដំណើរការ ប៉ុន្តែមានរន្ធផ្សេងទៀតនៅដំណើរការ</li>
+                                <li>- ការខូចខាតដោយសារការប្រើលើសបន្ទុក (overload) ឬឆ្លងភ្លើង</li>
+                                <li>- ការខូចខាតរូបរាងខាងក្រៅ (បាក់បែក, ប្រេះ)</li>
+                                <li>- ធ្លាក់ចូលទឹក ឬការធ្វើអោយខូចដោយចេតនា</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="screen" class="product-content hidden">
+                <div class="content-card p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4 text-center text-white">ស្គ្រីនការពារ (Screen Protectors)</h2>
+                     <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="text-lg font-bold text-lime-400 mb-3 flex items-center"><span class="text-2xl mr-2">✅</span> ធានាប្ដូរថ្មីក្នុងករណី</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- មានបញ្ហាខូចខាតស្រាប់ពីក្នុងប្រអប់ (ឧ. ប្រេះ) មុនពេលបិទ</li>
+                                <li>- ខុសទំហំ ឬម៉ូដែលពីការបញ្ជាទិញ</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-red-500 mb-3 flex items-center"><span class="text-2xl mr-2">❌</span> ករណីមិនស្ថិតក្នុងការធានា</h3>
+                            <ul class="space-y-2 list-inside text-slate-300">
+                                <li>- ការខូចខាតដែលកើតឡើងក្នុងអំឡុងពេល ឬក្រោយពេលបិទ</li>
+                                <li>- ការបិទមិនត្រឹមត្រូវដោយអ្នកប្រើប្រាស់ (ឧ. មានពពុះខ្យល់)</li>
+                                <li>- មិនធានាលើការខូចខាតអេក្រង់ទូរស័ព្ទរបស់អតិថិជន</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        
+        <footer class="text-center mt-12 text-slate-500 text-sm">
+            <p>&copy; 2024 ACC STORE. រក្សាសិទ្ធិគ្រប់យ៉ាង។</p>
+            <p>គោលការណ៍នេះអាចមានការផ្លាស់ប្តូរដោយមិនចាំបាច់ជូនដំណឹងជាមុន។</p>
+        </footer>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabsContainer = document.getElementById('product-tabs');
+            const contentPanels = document.querySelectorAll('.product-content');
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            
+            let synth = null;
+            let toneStarted = false;
+
+            tabsContainer.addEventListener('click', async function (event) {
+                const clickedButton = event.target.closest('button');
+                if (!clickedButton) return;
+                
+                try {
+                    // Initialize Tone.js and the synth on the first click
+                    if (!toneStarted) {
+                        await Tone.start();
+                        synth = new Tone.Synth({
+                            oscillator: { type: 'sine' },
+                            envelope: { attack: 0.005, decay: 0.1, sustain: 0.3, release: 0.1 }
+                        }).toDestination();
+                        toneStarted = true;
+                    }
+                    
+                    // Play sound if synth is ready
+                    if (synth) {
+                        synth.triggerAttackRelease("C5", "8n");
+                    }
+                } catch (e) {
+                    console.error("Error with sound effect:", e);
+                }
+
+                const targetId = clickedButton.dataset.target;
+
+                // Remove fade-in from all before adding to the new one
+                contentPanels.forEach(p => {
+                    p.classList.remove('fade-in');
+                });
+                
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                clickedButton.classList.add('active');
+
+                contentPanels.forEach(panel => {
+                    if (panel.id === targetId) {
+                        panel.classList.remove('hidden');
+                        // Add a very short delay to allow the 'display' property to update
+                        setTimeout(() => {
+                            panel.classList.add('fade-in');
+                        }, 10);
+                    } else {
+                        panel.classList.add('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
